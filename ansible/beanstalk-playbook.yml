@@ -1,0 +1,9 @@
+---
+
+- name: Get Device Facts
+  hosts: localhost
+  vars_files:
+    - aws_beanstalk_dotnet/vars/vault.yml
+
+  roles:
+    - aws_beanstalk_dotnet
