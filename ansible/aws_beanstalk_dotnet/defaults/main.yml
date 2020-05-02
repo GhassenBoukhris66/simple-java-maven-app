@@ -1,0 +1,5 @@
+---
+
+#test_hello: '{{ test_var }}'
+# Application name
+aws_beanstalk_app_name: 'beanstalk-ansible-test'
