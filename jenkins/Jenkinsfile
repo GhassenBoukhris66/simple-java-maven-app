@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-        ANSIBLE_VAULT= credentials("vault-ansible")
+        ANSIBLE_VAULT= credentials('vault-ansible')
     }
     stages {
          
