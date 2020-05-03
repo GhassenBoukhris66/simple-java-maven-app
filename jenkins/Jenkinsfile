@@ -1,6 +1,8 @@
 pipeline {
     agent none
-   
+    environment {
+        ansible-vault= credentials('vault-ansible')
+    }
     stages {
          
         stage('Build') {
@@ -18,7 +20,7 @@ pipeline {
             agent any
             steps {
                 sh 'pwd'
-                sh 'ansible-playbook ansible/beanstalk-playbook.yml'
+                sh 'ansible-playbook ansible/beanstalk-playbook.yml --vault-password-file $ansible-vault'
             }
         }
         stage('Test') {
