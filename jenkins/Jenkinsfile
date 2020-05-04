@@ -1,4 +1,4 @@
-pipeline {
+node {
     agent none
    
     stages {
@@ -27,7 +27,7 @@ pipeline {
             }
                 sh 'pwd'
                 sh 'ansible-playbook ansible/beanstalk-playbook.yml --vault-password-file $ANSIBLE_VAULT'
-                echo "summary"
+                echo "$summary"
             }
         }
         stage('Test') {
