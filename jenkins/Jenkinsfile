@@ -24,11 +24,10 @@ pipeline {
             steps {
                        script {
             def summary= "${env.JOB_NAME}"
-            def hello= "hello"
             
                 sh 'pwd'
                 sh 'ansible-playbook ansible/beanstalk-playbook.yml --vault-password-file $ANSIBLE_VAULT'
-                echo "$hello"
+                echo "$summary"
                        }
             }
         }
