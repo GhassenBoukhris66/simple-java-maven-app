@@ -18,10 +18,11 @@ pipeline {
             agent any
              environment {
         ANSIBLE_VAULT= credentials('vault-ansible')
-    }
-            script {
+                  script {
             def summary= "${env.JOB_NAME}"
             }
+    }
+           
             steps {
                 sh 'pwd'
                 sh 'ansible-playbook ansible/beanstalk-playbook.yml --vault-password-file $ANSIBLE_VAULT'
