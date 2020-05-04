@@ -23,13 +23,19 @@ pipeline {
            
             steps {
                        script {
-            def summary= "${env.JOB_NAME}"
-            def hi= "mwa"
+                           def subject= "Job: '$env.JOB_NAME [env.BUILD_NUMBER]'"
+                           def summary= "$subjetc: {env.BUILD_NUMBER}"
+                           def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""    
             
                 sh 'pwd'
                 sh 'ansible-playbook ansible/beanstalk-playbook.yml --vault-password-file $ANSIBLE_VAULT'
-                echo "$summary"
-                echo "$hi"
+                emailext (
+                    subject: subject,
+                    body: details,
+                    to: 'boukhrisghassen@gmail.com'
+                    
+                    )
                        }
             }
         }
